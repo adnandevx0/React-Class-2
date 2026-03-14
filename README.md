@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+<pre>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+  import React from "react";
+import ReactDom from "react-dom/client";
 
-In the project directory, you can run:
+import "./index.css";
 
-### `npm start`
+// const BookList = () => {
+//   return <section className="Booklist">
+//     <Book name={FirstBook.name} author={FirstBook.author} img={FirstBook.img}> 
+//       <p>
+//           sadsadsadsa
+//       </p>
+//       <button>click me</button>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+//     </Book>
+//     <Book name={SecondBook.name} author={SecondBook.author} img={SecondBook.img} />
+//     <Book name={ThirdBook.name} author={ThirdBook.author} img={ThirdBook.img} />
+//   </section>;
+// }
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+const BookList = () => {
+  return <section className="Booklist">
+    {allbooks.map((book) => {
+      return <Book key={book.name} name={book.name} author={book.author} img={book.img} />
+    })}
+  </section>;
+}
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const fontcolor = {
+  color: "red"
+}
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const allbooks = [
+  {
+    name: "The way of kings",
+    author: "Brandon Sanderson",
+    img: "https://images-na.ssl-images-amazon.com/images/I/51N-u8AsmdL._SX258_BO1,204,203,200_.jpg"
+  },
+  {
+    name: "Justinian",
+    author: "Robert Graves",
+    img: ""
+  },
+  {
+    name: "and then there were none",
+    author: "Agatha Christie",
+    img: "https://images-na.ssl-images-amazon.com/images/I/51N-u8AsmdL._SX258_BO1,204,203,200_.jpg"
+  }
+]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const Book = ({ name, author, img , children}) => {
+  console.log({ name, author, img });
+  return <article className="Book">
+    <img src={img} alt="book" />
+    <h3 style={fontcolor}> {author} </h3>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    <p> {name} </p>
+    {children}
+  </article>;
+}
 
-### `npm run eject`
+const Titlw = "The way of kings";
+const AuthorName = "Brandon Sanderson";
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// const Image = () => <img src="https://images-na.ssl-images-amazon.com/images/I/51N-u8AsmdL._SX258_BO1,204,203,200_.jpg" alt="book" />;
+// const Title = () => <h3 style={fontcolor}>{Titlw}</h3>;
+// const Author = () => <p style={fontcolor}>{AuthorName}</p>;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const root = ReactDom.createRoot(document.getElementById("root"));
+root.render(<BookList/>);
+</pre>
